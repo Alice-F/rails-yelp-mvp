@@ -8,11 +8,17 @@ Rails.application.routes.draw do
 # POST "restaurants" // create
 # She/He can see the details of a restaurant, with all the reviews related to the restaurant.
 # GET "restaurants/38" // show
-  resources :restaurants, only: [:index, :new, :create, :show]
+
+# resources :restaurants, only: [:index, :new, :create, :show]
 
 # She/He can add a new review to a restaurant
 # GET "restaurants/38/reviews/new"
 # POST "restaurants/38/reviews"
+resources :restaurants , only: [:index, :new, :create, :show] do
+  resources :reviews, only: [ :new, :create ]
+end
+
 # get '/restaurants/:id/reviews/new', to: 'reviews#new'
 # post '/restaurants/:id/reviews', to: 'reviews#create'
+
 end
